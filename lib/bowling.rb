@@ -7,18 +7,18 @@ def score(roll)
 				sum += 10
 				i+=1
 			else
-				sum = sum + strike(roll[i+1], roll[i+2])
+				sum += strike(roll[i+1], roll[i+2])
 				i += 1
 			end
 		elsif((roll.length - i) > 1 && spare?(roll[i] ,roll[i+1])) 
-			sum = sum + spare(roll[i+2])
+			sum += spare(roll[i+2])
 			i += 2
 		else
 			if roll.count - i > 1
-				sum = sum + roll[i] + roll[i+1]
+				sum += roll[i] + roll[i+1]
 				i += 2
 			elsif roll.count - i == 1
-				sum = sum + roll[i]
+				sum += roll[i]
 				i+=1
 			end
 		end
