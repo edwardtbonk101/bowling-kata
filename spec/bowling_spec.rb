@@ -64,6 +64,43 @@ describe 'score' do
 	end
 end
 
+describe 'spare_score' do 
+	it 'should equal 10 plus the score of the next roll' do 
+		bowling = Bowling.new
+		bowling.spare_score(9) == 19
+	end
+end
+
+describe 'strike_score' do 
+	it 'should equal 10 plus the score of the next 2 rolls' do 
+		bowling = Bowling.new
+		bowling.strike_score(2,2) == 14
+	end
+end
+
+
+describe 'spare?' do 
+	it 'should return true when the sum of 2 frame rolls equals 10' do
+		bowling = Bowling.new
+		bowling.spare?(1,9).should == true
+	end
+		it 'should return true when the sum of 2 frame rolls does not equal 10' do
+		bowling = Bowling.new
+		bowling.spare?(0,9).should == false
+	end
+end
+
+describe 'strike?' do 
+	it 'should return true when a 10 is rolled' do 
+		bowling = Bowling.new
+		bowling.strike?(10).should == true
+	end
+	it 'should return false when a 9 is rolled' do 
+		bowling = Bowling.new
+		bowling.strike?(9).should == false
+	end
+end
+
 describe 'more_than_one_frame?' do
 	it 'should return true if there is more than one frame left' do 
 		bowling = Bowling.new
@@ -86,40 +123,14 @@ describe 'tenth_frame?' do
 	end
 end
 
-describe 'spare_score' do 
-	it 'should equal 10 plus the score of the next roll' do 
+describe 'two_frames_left?' do 
+	it 'should return true when passed 2' do
 		bowling = Bowling.new
-		bowling.spare_score(9) == 19
+		bowling.two_frames_left?(2).should == true
 	end
-end
-
-describe 'strike_score' do 
-	it 'should equal 10 plus the score of the next 2 rolls' do 
+	it 'should return false when something other than 2 is passed' do
 		bowling = Bowling.new
-		bowling.strike_score(2,2) == 14
-	end
-end
-
-describe 'strike?' do 
-	it 'should return true when a 10 is rolled' do 
-		bowling = Bowling.new
-		bowling.strike?(10).should == true
-	end
-	it 'should return false when a 9 is rolled' do 
-		bowling = Bowling.new
-		bowling.strike?(9).should == false
-	end
-
-end
-
-describe 'spare?' do 
-	it 'should return true when the sum of 2 frame rolls equals 10' do
-		bowling = Bowling.new
-		bowling.spare?(1,9).should == true
-	end
-		it 'should return true when the sum of 2 frame rolls does not equal 10' do
-		bowling = Bowling.new
-		bowling.spare?(0,9).should == false
+		bowling.two_frames_left?(3).should ==	false
 	end
 end
 
@@ -127,5 +138,9 @@ describe 'no_extra_frames?' do
 	it 'should return true when 1 and 1 is entered' do 
 		bowling = Bowling.new
 		bowling.no_extra_frames?(1,1).should == true
+	end
+	it 'should return false when 10 and 2 is entered'	do 
+		bowling = Bowling.new 
+		bowling.no_extra_frames?(10,2).should == false 
 	end
 end
