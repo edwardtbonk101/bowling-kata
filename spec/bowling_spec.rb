@@ -54,6 +54,14 @@ describe 'score' do
 		bowling = Bowling.new
 		bowling.score([1,9,1,9,10,9,1,10,10,1,9,1,9,1,9,9,1,1]).should == 164
 	end
+	it 'should return 30 when there is a strike in the 9th and only 1s in the 10th' do 
+		bowling = Bowling.new
+		bowling.score([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,1,1]).should == 30
+	end
+	it 'should return 29 when there is a strike in the 9th and only 1s in the 10th' do 
+		bowling = Bowling.new
+		bowling.score([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,9,1,1,1]).should == 29
+	end
 end
 
 describe 'more_than_one_frame?' do
@@ -112,5 +120,12 @@ describe 'spare?' do
 		it 'should return true when the sum of 2 frame rolls does not equal 10' do
 		bowling = Bowling.new
 		bowling.spare?(0,9).should == false
+	end
+end
+
+describe 'no_extra_frames?' do 
+	it 'should return true when 1 and 1 is entered' do 
+		bowling = Bowling.new
+		bowling.no_extra_frames?(1,1).should == true
 	end
 end
