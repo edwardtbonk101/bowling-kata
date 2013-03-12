@@ -26,10 +26,6 @@ class Bowling
 		return sum
 	end
 	
-	def last_frame?(frames_left)
-		frames_left == 1
-	end
-	
 	def more_than_one_frame?(frames_left)
 		frames_left > 1
 	end

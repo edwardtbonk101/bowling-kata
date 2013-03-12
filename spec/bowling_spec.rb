@@ -42,7 +42,11 @@ describe 'score' do
 		bowling = Bowling.new
 		bowling.score([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,1,9]).should == 38
 	end
-	it 'should return 75 when a strikes and spares are rolled' do 
+	it 'should return 38 when a spare is rolled in the 10th frame' do 
+		bowling = Bowling.new
+		bowling.score([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,9,1,10]).should == 38
+	end
+	it 'should return 75 when a strikes and spares are rolled consecutively' do 
 		bowling = Bowling.new
 		bowling.score([1,1,1,1,10,9,1,10,1,1,1,1,1,1,1,9,1,1]).should == 75
 	end
